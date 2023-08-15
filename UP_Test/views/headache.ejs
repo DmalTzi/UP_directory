@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../../../../image/HDR.ico">
+    <link rel="stylesheet" href="../../../../style/style.css">
+    <title>ตรวจอาการปวดหัว</title>
+</head>
+<body>
+    <%- include('nav') %>
+    <div class="container">
+        <div class="section-title">
+            <h1>อาการ</h1>
+            <p>ปวดหัว</p>
+        </div>
+        <form class="login-box" action="/update" method="post">
+            <input type="text" name="Symptom" value="ปวดหัว" hidden>
+            <div class="sub-login-box">
+                <div class="sub-sub-login-box">
+                    <label for="text">อายุ (ปี)</label>
+                    <input type="text" name="Age" placeholder="ตัวอย่าง : 17" required>
+                </div>
+                <div class="sub-sub-login-box">
+                    <label for="text">น้ำหนัก (กก.)</label>
+                    <input type="text" name="Weight" placeholder="ตัวอย่าง : 49" maxlength="5" required>
+                </div>
+            </div>
+            <div class="main-login-box">
+                <label for="text">อาการที่พบ</label>
+                <input type="text" name="Cause" placeholder="ตัวอย่าง : ปวดหัวเป็นไข้คล้ายจะเป็นลม" required>
+            </div>
+            <div class="container-slider">
+                <label for="text">ระดับความปวดของอาการ</label>
+                <div class="box-slider">
+                    <div class="slider">
+                        <input name="Range" id="slider-input" type="range" min="0" max="10" value="5">
+                    </div>
+                    <div class="slider-value">10</div>
+                </div>
+                <script>
+                    const slider = document.querySelector("#slider-input")
+                    const value = document.querySelector(".slider-value")
+                    value.textContent = slider.value;
+                    slider.oninput = function(){
+                        value.textContent = this.value;
+                    }
+                </script>
+            </div>
+            <button class="login-btn">ยืนยัน</button>
+        </form>
+    </div>
+    <footer class="footer">
+    </footer>
+</body>
+</html>

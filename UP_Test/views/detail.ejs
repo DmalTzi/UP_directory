@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style/style.css">
+    <title>ระบบดูแล</title>
+</head>
+<body>
+    <%- include('nav') %>
+    <div class="main-content-container">
+        <div class="information-card">
+            <div class="info-name-card">
+                <p><%= item.StudentNumber %></p>
+                <p><%= item.StudentName %></p>
+                <p><%= String(item.Room)[0]%>/<%=String(item.Room).slice(-1)%></p>
+            </div>
+            <div class="info-detail-card">
+                <% if(item.Symptom == "ปวดหัว" || item.Symptom == "ปวดประจำเดือน"){%>
+                    <p>อาการ : <%= item.Symptom%></p>
+                    <p>รายละเอียด : <%= item.Cause%></p>
+                    <p>อายุ : <%= item.Age%></p>
+                    <p>น้ำหนัก : <%= item.Weight%></p>
+                    <p>ระดับความปวด : <%= item.Range%></p>
+                    <p>Serial : <%= item.Detail.Serial%></p>
+                    <p>สถานะการรับยา : <%= item.Detail.SendStatus%></p>
+                    <p>สถานะการอนุมัติ : <%= item.Detail.SendBy%></p>
+                <% }else if(item.Symptom == "มีไข้"){ %>
+                    <p>อาการ : <%= item.Symptom%></p>
+                    <p>รายละเอียด : <%= item.Cause%></p>
+                    <p>อายุ : <%= item.Age%></p>
+                    <p>น้ำหนัก : <%= item.Weight%></p>
+                    <p>อุณหภูมิร่างกาย : <%= item.Temp%></p>
+                    <p>Serial : <%= item.Detail.Serial%></p>
+                    <p>สถานะการรับยา : <%= item.Detail.SendStatus%></p>
+                    <p>สถานะการอนุมัติ : <%= item.Detail.SendBy%></p>
+                <% }else if(item.Symptom == "ท้องเสีย"){%>
+                    <p>อาการ : <%= item.Symptom%></p>
+                    <p>อายุ : <%= item.Age%></p>
+                    <p>น้ำหนัก : <%= item.Weight%></p>
+                    <p>เริ่มถ่ายตั้งแต่วัน : <%= item.Date_poo%></p>
+                    <p>เริ่มถ่ายตั้งแต่เวลา : <%= item.Date_time%></p>
+                    <p>ถ่ายมาแล้ว : <%= item.Time_poo%></p>
+                    <p>Serial : <%= item.Detail.Serial%></p>
+                    <p>สถานะการรับยา : <%= item.Detail.SendStatus%></p>
+                    <p>สถานะการอนุมัติ : <%= item.Detail.SendBy%></p>
+                <%}else if(item.Symptom == "ท้องเสีย"){%>
+                    <p>อาการ : <%= item.Symptom%></p>
+                    <p>รายละเอียด : <%= item.Cause%></p>
+                    <p>อายุ : <%= item.Age%></p>
+                    <p>น้ำหนัก : <%= item.Weight%></p>
+                    <p>Serial : <%= item.Detail.Serial%></p>
+                    <p>สถานะการรับยา : <%= item.Detail.SendStatus%></p>
+                    <p>สถานะการอนุมัติ : <%= item.Detail.SendBy%></p>
+                <%}%>
+            </div>
+            <div class="info-time-card">
+                <p><%= item.Detail.date%></p>
+                <p><%= item.Detail.Time%></p>
+                <form action="/approve" method="post">
+                    <input hidden type="text" name="update_id" value="<%= item._id %>">
+                    <input hidden type="text" name="StudentNumber" value="<%= item.StudentNumber %>">
+                    <input hidden type="text" name="StudentName" value="<%= item.StudentName %>">
+                    <input hidden type="text" name="Room" value="<%= item.Room %>">
+                    <input hidden type="text" name="Number" value="<%= item.Number %>">
+                    <input hidden type="text" name="Symptom" value="<%= item.Symptom %>">
+                    <input hidden type="text" name="Age" value="<%= item.Age %>">
+                    <input hidden type="text" name="Weight" value="<%= item.Weight %>">
+                    <input hidden type="text" name="Cause" value="<%= item.Cause %>">
+                    <input hidden type="text" name="Range" value="<%= item.Range %>">
+                    <input hidden type="text" name="Temp" value="<%= item.Temp %>">
+                    <input hidden type="text" name="Date_poo" value="<%= item.Date_poo %>">
+                    <input hidden type="text" name="Poo_time" value="<%= item.Poo_time %>">
+                    <input hidden type="text" name="Time_poo" value="<%= item.Time_poo %>">
+                    <input hidden type="text" name="Serial" value="<%= item.Detail.Serial %>">
+                    <input hidden type="text" name="Time" value="<%= item.Detail.Time %>">
+                    <input hidden type="text" name="date" value="<%= item.Detail.date %>">
+                    <% if(item.Detail.SendStatus == false){ %>
+                    <button class="approve-btn">อนุมัติ</button>
+                    <%}%>
+                    <!-- <button type="submit" class="disapprove-btn">ไม่อนุมัติ</button> -->
+                </form>
+            </div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+    </footer>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>ระบบดูแล</title>
+</head>
+<body>
+    <%- include('nav') %>
+    <script>
+        function refreshPage(){
+            window.location.reload();
+        } 
+        </script>
+    <div class="nav-bar-card">
+        <form action="/admin" method="get">
+            <div class="nav-filter-bar-card">
+                <!-- <input type="date" name="select-date" id="" class="date-time-filter" placeholder="dd/mm/yyyy"> -->
+                <select name="Topic_show" id="">
+                    <option value="all" >ทั้งหมด</option>
+                    <option value="false" >รออนุมัติ</option>
+                    <option value="true" >อนุมัติเรียบร้อย</option>
+                </select>
+                <button type="submit" class="filter-btn" >ยืนยัน</button>
+            </div>
+        </form>
+        <div class="nav-other-bar-card">
+            <button type="button" onclick="refreshPage() " class="filter-btn">รีเฟรช</button>
+            <button type="button" class="filter-btn">ดาวน์โหลด</button>
+        </div>
+    </div>
+    
+    <div class="main-content-container">
+        <% Object.values(data).forEach(function(item){%>
+        <a href="/admin/<%= item.Detail.Serial%>" class="link-information-card">
+            <div class="information-card">
+                <div class="info-name-card">
+                    <p><%= item.StudentNumber%></p>
+                    <p><%= item.StudentName %></p>
+                    <p><%= String(item.Room)[0]%>/<%=String(item.Room).slice(-1)%></p>
+                </div>
+                <div class="info-detail-card">
+                    <p>อาการ : <%= item.Symptom%> สถานะการส่ง : <%= item.Detail.SendStatus%></p>
+                </div>
+                <div class="info-time-card">
+                    <p><%= item.Detail.date%></p>
+                    <p>9:47PM</p>
+                </div>
+            </div>
+        </a>
+       <% }) %>
+    </div>
+    <footer class="footer">
+    </footer>
+</body>
+</html>
