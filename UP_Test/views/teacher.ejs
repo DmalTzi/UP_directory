@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./image/HDR.ico">
+    <link rel="stylesheet" href="style/style.css">
+    <title>สำหรับคุณครู</title>
+</head>
+<body>
+    <%- include('nav') %>
+    <div class="container">
+        <h1>สำหรับบุคลากร</h1>
+        <form class="login-box" method="post" action="/teacher/login">
+            <div class="main-login-box">
+                <input type="text" name="UserBy" value="Teacher" hidden>
+                <label for="officerNumber">ชื่อผู้ใช้งาน</label>
+                <input type="text" name="TeacherId" placeholder="T001">
+                <label for="officerpassword">รหัสผ่าน</label>
+                <input type="password" name="TeacherPassword" placeholder="">
+            </div>
+            <button class="login-btn">ยืนยัน</button>
+        </form>
+    </div>
+    <footer class="footer">
+    </footer>
+</body>
+</html>

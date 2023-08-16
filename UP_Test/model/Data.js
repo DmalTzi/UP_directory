@@ -14,6 +14,8 @@ mongoose.connect(mongodburl,{dbName:"HDRProjecct"},{
 // schema design
 
 let dataSchema = mongoose.Schema({
+    TeacherUser:String,
+    TeacherName:String,
     StudentNumber:Number,
     StudentName:String,
     Room:Number,
@@ -28,14 +30,13 @@ let dataSchema = mongoose.Schema({
     Time_poo:String,
     Poo_time:Number,
     Detail:{
+        UserBy:String,
         Serial:Number,
         SendBy:String,
         SendStatus:Boolean,
         Time:String,
         date:String
     },
-    TeacherNumber:String,
-    TeacherPassword:String
 })
 
 // carete mode
